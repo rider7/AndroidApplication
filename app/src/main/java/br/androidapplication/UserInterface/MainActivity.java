@@ -1,4 +1,4 @@
-package br.androidapplication;
+package br.androidapplication.UserInterface;
 
 import android.os.Bundle;
 
@@ -12,6 +12,8 @@ import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
+
+import br.androidapplication.R;
 
 public class MainActivity extends AppCompatActivity {
 

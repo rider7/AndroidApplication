@@ -14,7 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import br.androidapplication.R;
-
+//Main entry point into the application
 public class MainActivity extends AppCompatActivity {
 
     @Override

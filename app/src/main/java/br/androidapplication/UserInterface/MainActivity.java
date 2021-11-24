@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import br.androidapplication.Database.ScheduleDatabase;
 import br.androidapplication.Database.ScheduleRepository;
 import br.androidapplication.Entity.TermEntity;
 import br.androidapplication.R;
@@ -26,12 +27,14 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
         FloatingActionButton fab = findViewById(R.id.fab);
 
         //Create repository object
         ScheduleRepository repository = new ScheduleRepository(getApplication());
         //Create termEntity object with following values
         TermEntity termEntity = new TermEntity("Spring","10/15/2011","12/12/12");
+        //repository.delete(termEntity);
         //Pass the termEntity object with the values into the insert method of the repository class
         repository.insert(termEntity);
 
@@ -63,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

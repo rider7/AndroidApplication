@@ -57,11 +57,11 @@ public abstract class ScheduleDatabase extends RoomDatabase {
                 TermDAO mTermDao = INSTANCE.termDAO();
 
                 // Delete database data in the beginning.
-                mTermDao.deleteAllTerms();
+                //mTermDao.deleteAllTerms();
 
                 //Insert test data to make sure db and tables are setup correctly
-                TermEntity term = new TermEntity("Term 1", "10/12/25", "12/13/27");
-                mTermDao.insert(term);
+//                TermEntity term = new TermEntity("Term 1", "10/12/25", "12/13/27");
+//                mTermDao.insert(term);
 
 
             });

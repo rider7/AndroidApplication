@@ -14,7 +14,8 @@ public class TermEntity {
     private String termEnd;
 
     //Constructor
-    public TermEntity (String termTitle, String termStart, String termEnd) {
+    public TermEntity (int termID, String termTitle, String termStart, String termEnd) {
+        this.termID = termID;
         this.termTitle = termTitle;
         this.termStart = termStart;
         this.termEnd = termEnd;
@@ -23,6 +24,7 @@ public class TermEntity {
     @Override
     public String toString() {
         return "TermEntity{" +
+                "termID" + termID +
                 "termTitle=" + termTitle +
                 ", termStart='" + termStart + '\'' +
                 ", termEnd=" + termEnd +

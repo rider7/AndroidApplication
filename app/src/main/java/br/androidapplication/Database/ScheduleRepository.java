@@ -78,6 +78,19 @@ public class ScheduleRepository {
             e.printStackTrace();
         }
     }
+
+    public void update(TermEntity termEntity) {
+        databaseWriteExecutor.execute(() -> {
+            mTermDAO.update(termEntity);
+        });
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     //Course list
     //Course insert
     //Course delete

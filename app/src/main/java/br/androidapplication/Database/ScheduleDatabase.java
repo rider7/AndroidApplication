@@ -18,7 +18,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 //Annotate database with entity and version number
-@Database(entities = {TermEntity.class}, version = 1)
+@Database(entities = {TermEntity.class}, version = 1, exportSchema = false)
 
 public abstract class ScheduleDatabase extends RoomDatabase {
     public abstract TermDAO termDAO();
@@ -62,8 +62,6 @@ public abstract class ScheduleDatabase extends RoomDatabase {
                 //Insert test data to make sure db and tables are setup correctly
 //                TermEntity term = new TermEntity("Term 1", "10/12/25", "12/13/27");
 //                mTermDao.insert(term);
-
-
             });
         }
     };

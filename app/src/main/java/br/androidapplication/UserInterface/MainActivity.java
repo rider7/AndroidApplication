@@ -1,5 +1,6 @@
 package br.androidapplication.UserInterface;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -7,11 +8,15 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
+
+import java.util.List;
 
 import br.androidapplication.Database.ScheduleDatabase;
 import br.androidapplication.Database.ScheduleRepository;
@@ -20,6 +25,7 @@ import br.androidapplication.R;
 //Main entry point into the application
 public class MainActivity extends AppCompatActivity {
 
+    private ScheduleRepository repository;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,10 +39,23 @@ public class MainActivity extends AppCompatActivity {
         //Create repository object
         ScheduleRepository repository = new ScheduleRepository(getApplication());
         //Create termEntity object with following values
-        TermEntity termEntity = new TermEntity("Spring","10/15/2011","12/12/12");
+        TermEntity termEntity = new TermEntity(1,"Spring","12/12/12", "01/23/12");
         //repository.delete(termEntity);
         //Pass the termEntity object with the values into the insert method of the repository class
         repository.insert(termEntity);
+
+        //Get list of terms from the db using repository instance with method get allterms
+        List<TermEntity> allTerms = repository.getAllTerms();
+        //Set list on recyclerview create recyclerview
+        RecyclerView recyclerView = findViewById(R.id.termRecyclerView);
+        //create adapter
+        final TermAdapter termAdapter = new TermAdapter(this);
+        //Put adapter on recyclerview
+        recyclerView.setAdapter(termAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //Set the terms on the term adapter with the all terms list made above
+        termAdapter.setTerm(allTerms);
+
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,4 +87,9 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+//    public void enterButton(View view) {
+//        Intent intent= new Intent(MainActivity.this,TermActivity.class);
+//        startActivity(intent);
+//    }
 }

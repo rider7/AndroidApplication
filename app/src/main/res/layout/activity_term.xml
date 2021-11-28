@@ -4,16 +4,39 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".UserInterface.TermActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/termRecyclerView"
+        android:nestedScrollingEnabled="false"
+        android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:listitem="@layout/term_list_item" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:onClick="addTerm"
+        app:srcCompat="@android:drawable/ic_input_add"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/cardview_dark_background"
-        tools:listitem="@layout/term_list_item"/>
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_editor_absoluteX="222dp"
+        tools:layout_editor_absoluteY="465dp" />
+
+<!--    <EditText-->
+<!--        android:id="@+id/editTextTextPersonName"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="340dp"-->
+<!--        android:ems="10"-->
+<!--        android:inputType="textPersonName"-->
+<!--        android:text="TEST"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/termRecyclerView"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/termRecyclerView"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/termRecyclerView" />-->
+
 </androidx.constraintlayout.widget.ConstraintLayout>

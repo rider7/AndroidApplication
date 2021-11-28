@@ -60,8 +60,12 @@ public abstract class ScheduleDatabase extends RoomDatabase {
                 //mTermDao.deleteAllTerms();
 
                 //Insert test data to make sure db and tables are setup correctly
-//                TermEntity term = new TermEntity("Term 1", "10/12/25", "12/13/27");
-//                mTermDao.insert(term);
+                TermEntity term = new TermEntity(3, "Spring", "10/12/25", "12/13/27");
+                mTermDao.insert(term);
+                term = new TermEntity(1, "Fall", "10/12/25", "12/13/27");
+                mTermDao.insert(term);
+                term = new TermEntity(2, "Summer", "10/12/25", "12/13/27");
+                mTermDao.insert(term);
             });
         }
     };

@@ -19,7 +19,8 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
 
     class TermViewHolder extends RecyclerView.ViewHolder {
         private final TextView termItemView;
-        private final TextView termItemView2;
+//        private final TextView termItemView2;
+//        private final TextView termItemView3;
         //Constructor
         private TermViewHolder(View itemView){
             super(itemView);
@@ -27,13 +28,14 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
 
             //This maps to the id = textView on term_list_item.xml
             termItemView = itemView.findViewById(R.id.textView);
-            termItemView2 = itemView.findViewById(R.id.textView2);
+//            termItemView2 = itemView.findViewById(R.id.textView2);
+//            termItemView3 = itemView.findViewById(R.id.textView3);
             itemView.setOnClickListener(new View.OnClickListener(){
 
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
-                    final TermEntity current=mTerm.get(position);
+                    final TermEntity current =mTerm.get(position);
                     Intent intent = new Intent(context,TermActivity.class);
                     intent.putExtra("termID", current.getTermID());
                     intent.putExtra("termTitle", current.getTermTitle());
@@ -42,20 +44,20 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
                     context.startActivity(intent);
                 }
             });
-
         }
     }
+
     private List<TermEntity> mTerm;
     private final Context context;
     private final LayoutInflater mInflater;
 
-    //Layoutinflaer connects to list item layout
+    //Layout inflater connects to list item layout
     public TermAdapter(Context context) {
         mInflater = LayoutInflater.from(context);
         this.context = context;
     }
 
-    @NonNull
+
     @Override
     public TermAdapter.TermViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView=mInflater.inflate(R.layout.term_list_item,parent,false);
@@ -66,15 +68,16 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
     //Set the data
     //Call this should be in TermActivity but is right now in MainActivity
     @Override
-    public void onBindViewHolder(@NonNull TermAdapter.TermViewHolder holder, int position) {
+    public void onBindViewHolder(TermViewHolder holder, int position) {
         if(mTerm!=null){
             TermEntity current = mTerm.get(position);
             holder.termItemView.setText(current.getTermTitle());
-            holder.termItemView2.setText(Integer.toString(current.getTermID()));
+//            holder.termItemView2.setText(Integer.toString(current.getTermID()));
+//            holder.termItemView3.setText(current.getTermStart());
         }
         else{
             holder.termItemView.setText("No Term Title Available");
-            holder.termItemView2.setText("No Term ID Available.");
+//            holder.termItemView2.setText("No Term ID Available.");
         }
     }
 

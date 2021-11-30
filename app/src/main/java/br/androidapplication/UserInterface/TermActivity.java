@@ -38,14 +38,9 @@ public class TermActivity extends AppCompatActivity {
 
     //Need to change MainActivity
     public void addTerm(View view) {
-        Intent intent=new Intent(TermActivity.this,MainActivity.class);
+        Intent intent=new Intent(TermActivity.this,CourseActivity.class);
         startActivity(intent);
     }
-
-
-
-
-
 
 
 // 11-27 original code not working

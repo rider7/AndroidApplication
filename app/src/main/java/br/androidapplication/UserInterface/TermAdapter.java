@@ -36,7 +36,8 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
                 public void onClick(View v) {
                     int position = getAdapterPosition();
                     final TermEntity current =mTerm.get(position);
-                    Intent intent = new Intent(context,MainActivity.class);
+                    Intent intent = new Intent(context,CourseActivity.class);
+                    intent.putExtra("position", position);
                     intent.putExtra("termID", current.getTermID());
                     intent.putExtra("termTitle", current.getTermTitle());
                     intent.putExtra("termStart", current.getTermStart());
@@ -66,7 +67,7 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
     }
 
     //Set the data
-    //Call this should be in TermActivity but is right now in MainActivity
+    //Call this should be in TermActivity
     @Override
     public void onBindViewHolder(TermViewHolder holder, int position) {
         if(mTerm!=null){

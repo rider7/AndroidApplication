@@ -30,7 +30,7 @@
                 android:id="@+id/TermTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="@string/math"/>
+                />
         </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -44,7 +44,7 @@
                     android:id="@+id/TermStart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="05/12/17"/>
+                    />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -58,7 +58,7 @@
                     android:id="@+id/TermEnd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="06/15/18"/>
+                    />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"

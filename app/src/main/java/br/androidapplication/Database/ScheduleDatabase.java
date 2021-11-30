@@ -65,9 +65,9 @@ public abstract class ScheduleDatabase extends RoomDatabase {
                 AssessmentDAO mAssessmentDao = INSTANCE.assessmentDAO();
 
                 // Delete database data in the beginning.
-                mTermDao.deleteAllTerms();
-                mCourseDao.deleteAllCourses();
-                mAssessmentDao.deleteAllAssessments();
+                //mTermDao.deleteAllTerms();
+                //mCourseDao.deleteAllCourses();
+                //mAssessmentDao.deleteAllAssessments();
 
                 //Insert test data to make sure db and tables are setup correctly
                 TermEntity term = new TermEntity(3, "Spring", "10/12/25", "12/13/27");

@@ -3,6 +3,9 @@ package br.androidapplication.UserInterface;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,6 +23,7 @@ public class TermActivity extends AppCompatActivity {
     String title;
     EditText editTitle;
     private ScheduleRepository repository;
+
     //New code based on My Bicycle Cohort transferring mainactivity to termactivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,14 +38,30 @@ public class TermActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter.setTerm(repository.getAllTerms());
+
+        // calling the action bar
+        ActionBar actionBar = getSupportActionBar();
+
+        // showing the back button in action bar
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
-    //Need to change MainActivity
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    //Intent to change to courseActivity
     public void addTerm(View view) {
-        Intent intent=new Intent(TermActivity.this,CourseActivity.class);
+        Intent intent = new Intent(TermActivity.this, CourseActivity.class);
         startActivity(intent);
     }
-
+}
 
 // 11-27 original code not working
  //   @Override
@@ -78,4 +98,4 @@ public class TermActivity extends AppCompatActivity {
 //            repository.update(oldTerm);
 //        }
 //    }
-}
+

@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.content.Intent;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -52,11 +55,12 @@ public class CourseActivity  extends AppCompatActivity {
     CourseEntity currentCourse;
     public static int numCourses;
 
+    //Why is the Term Adapter not passing the values to onCreate for the CourseActivity?
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course);
-        courseTermID=getIntent().getIntExtra("termID",-1);
+        courseTermID=getIntent().getIntExtra("termID",2);
         if (courseTermID==-1)courseTermID=-1;
         repository= new ScheduleRepository(getApplication());
         List<TermEntity> allTerms=repository.getAllTerms();
@@ -84,9 +88,9 @@ public class CourseActivity  extends AppCompatActivity {
             termEnd=currentTerm.getTermEnd();
         }
         if(courseTermID!=-1){
-            editCourseTitle.setText(termTitle);
-            editCourseStart.setText(termStart);
-            editCourseEnd.setText(termEnd);
+            editTermTitle.setText(termTitle);
+            editTermStart.setText(termStart);
+            editTermEnd.setText(termEnd);
         }
         repository= new ScheduleRepository(getApplication());
         RecyclerView recyclerView = findViewById(R.id.associated_courses);
@@ -99,6 +103,28 @@ public class CourseActivity  extends AppCompatActivity {
         }
         numCourses=filteredCourses.size();
         adapter.setWords(filteredCourses);
+
+        // calling the action bar
+        ActionBar actionBar = getSupportActionBar();
+
+        // showing the back button in action bar
+        actionBar.setDisplayHomeAsUpEnabled(true);
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_delete, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 //    public void addPart(View view) {

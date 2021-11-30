@@ -1,12 +1,14 @@
 package br.androidapplication.Database;
 
 
+import br.androidapplication.DAO.AssessmentDAO;
+import br.androidapplication.DAO.CourseDAO;
 import br.androidapplication.DAO.TermDAO;
-//import br.androidapplication.DAO.CourseDAO;
-//import br.androidapplication.DAO.Assessment;
+import br.androidapplication.DAO.CourseDAO;
+import br.androidapplication.DAO.AssessmentDAO;
 import br.androidapplication.Entity.TermEntity;
-//import br.androidapplication.Entity.CourseEntity;
-//import br.androidapplication.Entity.AssessmentEntity;
+import br.androidapplication.Entity.CourseEntity;
+import br.androidapplication.Entity.AssessmentEntity;
 
 import android.content.Context;
 import androidx.annotation.NonNull;
@@ -18,10 +20,13 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 //Annotate database with entity and version number
-@Database(entities = {TermEntity.class}, version = 1, exportSchema = false)
+@Database(entities = {TermEntity.class, CourseEntity.class, AssessmentEntity.class}, version = 5, exportSchema = false)
 
 public abstract class ScheduleDatabase extends RoomDatabase {
     public abstract TermDAO termDAO();
+    public abstract CourseDAO courseDAO();
+    public abstract AssessmentDAO assessmentDAO();
+
     //determines the number of threads
     private static final int NUMBER_OF_THREADS = 4;
     //the write executor An object that executes submitted Runnable tasks
@@ -55,6 +60,8 @@ public abstract class ScheduleDatabase extends RoomDatabase {
                 // Populate the database in the background.
 
                 TermDAO mTermDao = INSTANCE.termDAO();
+                CourseDAO mCourseDao = INSTANCE.courseDAO();
+                AssessmentDAO mAssessmentDao = INSTANCE.assessmentDAO();
 
                 // Delete database data in the beginning.
                 //mTermDao.deleteAllTerms();

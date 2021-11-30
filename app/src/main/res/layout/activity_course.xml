@@ -79,4 +79,16 @@
             android:background="@android:color/darker_gray"
             tools:listitem="@layout/course_list_item"
             app:layout_constraintTop_toBottomOf="@+id/scrollview"/>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:onClick="addCourse"
+        app:srcCompat="@android:drawable/ic_input_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_editor_absoluteX="222dp"
+        tools:layout_editor_absoluteY="465dp"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

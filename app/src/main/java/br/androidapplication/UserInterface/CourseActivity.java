@@ -129,12 +129,14 @@ public class CourseActivity  extends AppCompatActivity {
     }
 
 
+    //Intent to change to courseActivity
+    public void addCourse(View view) {
+        Intent intent=new Intent(CourseActivity.this,AssessmentActivity.class);
+        intent.putExtra("TermID",courseTermID);
+        startActivity(intent);
+    }
 
-//    public void addPart(View view) {
-//        Intent intent=new Intent(PartActivity.this,PartDetail.class);
-//        intent.putExtra("TermID",Id);
-//        startActivity(intent);
-//    }
+
 
     public void addTermFromScreen(View view) {
         TermEntity t;
@@ -148,30 +150,4 @@ public class CourseActivity  extends AppCompatActivity {
         }
         repository.insert(t);
     }
-
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_delete, menu);
-//        return true;
-//    }
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.delete) {
-//            if(numParts==0) {
-//                inventoryManagementRepository.delete(currentTerm);
-//            }
-//            else{
-//                Toast.makeText(getApplicationContext(),"Can't delete a Term with parts",Toast.LENGTH_LONG).show();// make another toast
-//            }
-//        }
-//
-//
-//        return super.onOptionsItemSelected(item);
-//    }
 }

@@ -152,13 +152,56 @@ public class ScheduleRepository {
             e.printStackTrace();
         }
     }
+
+    //Used to get the full list of assessments
+    public List<AssessmentEntity> getAllAssessments() {
+        databaseWriteExecutor.execute(() -> {
+            mAllAssessments = mAssessmentDAO.getAllAssessments();
+        });
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return mAllAssessments;
+    }
+
+    //Insert for course
+    public void insert(AssessmentEntity assessmentEntity) {
+        databaseWriteExecutor.execute(() -> {
+            mAssessmentDAO.insert(assessmentEntity);
+        });
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //Delete for course
+    public void delete(AssessmentEntity assessmentEntity) {
+        databaseWriteExecutor.execute(() -> {
+            mAssessmentDAO.delete(assessmentEntity);
+        });
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //Update for course
+    public void update(AssessmentEntity assessmentEntity) {
+        databaseWriteExecutor.execute(() -> {
+            mAssessmentDAO.update(assessmentEntity);
+        });
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
-
-    //Course list
-    //Course insert
-    //Course delete
-    //Assessment list
-    //Assessment insert
-    //Assessment delete
 

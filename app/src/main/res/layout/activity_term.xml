@@ -17,7 +17,7 @@
         app:layout_constraintRight_toRightOf="parent"
         tools:layout_editor_absoluteX="222dp"
         tools:layout_editor_absoluteY="465dp"
-        tools:listitem="@layout/term_list_item"/>
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
@@ -25,5 +25,6 @@
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="18dp"
         tools:layout_editor_absoluteY="21dp"
+        tools:listitem="@layout/term_list_item"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>

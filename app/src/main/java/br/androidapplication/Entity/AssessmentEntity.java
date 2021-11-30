@@ -9,16 +9,15 @@ public class AssessmentEntity {
 
     private int courseAssessmentID;
     private String assessmentType; //Objective or Performance
-    private String courseTitle;
-    private String courseEnd;
+    private String assessmentTitle;
+    private String assessmentEnd;
 
-
-    public AssessmentEntity(int assessmentID, int courseAssessmentID, String assessmentType, String courseTitle, String courseEnd) {
+    public AssessmentEntity(int assessmentID, int courseAssessmentID, String assessmentType, String assessmentTitle, String assessmentEnd) {
         this.assessmentID = assessmentID;
         this.courseAssessmentID = courseAssessmentID;
         this.assessmentType = assessmentType;
-        this.courseTitle = courseTitle;
-        this.courseEnd = courseEnd;
+        this.assessmentTitle = assessmentTitle;
+        this.assessmentEnd = assessmentEnd;
     }
 
     @Override
@@ -27,8 +26,8 @@ public class AssessmentEntity {
                 "assessmentID=" + assessmentID +
                 ", courseAssessmentID=" + courseAssessmentID +
                 ", assessmentType='" + assessmentType + '\'' +
-                ", courseTitle='" + courseTitle + '\'' +
-                ", courseEnd='" + courseEnd + '\'' +
+                ", assessmentTitle='" + assessmentTitle + '\'' +
+                ", assessmentEnd='" + assessmentEnd + '\'' +
                 '}';
     }
 
@@ -56,19 +55,19 @@ public class AssessmentEntity {
         this.assessmentType = assessmentType;
     }
 
-    public String getCourseTitle() {
-        return courseTitle;
+    public String getAssessmentTitle() {
+        return assessmentTitle;
     }
 
-    public void setCourseTitle(String courseTitle) {
-        this.courseTitle = courseTitle;
+    public void setAssessmentTitle(String assessmentTitle) {
+        this.assessmentTitle = assessmentTitle;
     }
 
-    public String getCourseEnd() {
-        return courseEnd;
+    public String getAssessmentEnd() {
+        return assessmentEnd;
     }
 
-    public void setCourseEnd(String courseEnd) {
-        this.courseEnd = courseEnd;
+    public void setAssessmentEnd(String assessmentEnd) {
+        this.assessmentEnd = assessmentEnd;
     }
 }

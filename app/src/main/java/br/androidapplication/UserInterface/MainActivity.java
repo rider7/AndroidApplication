@@ -18,6 +18,7 @@ import android.view.MenuItem;
 
 import java.util.List;
 
+import br.androidapplication.DAO.TermDAO;
 import br.androidapplication.Database.ScheduleDatabase;
 import br.androidapplication.Database.ScheduleRepository;
 import br.androidapplication.Entity.TermEntity;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
     }
 
     public void enterButton(View view) {

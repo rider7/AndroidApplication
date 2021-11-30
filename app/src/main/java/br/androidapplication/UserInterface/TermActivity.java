@@ -19,7 +19,7 @@ public class TermActivity extends AppCompatActivity {
     int id;
     String title;
     EditText editTitle;
-    ScheduleRepository repository;
+    private ScheduleRepository repository;
     //New code based on My Bicycle Cohort transferring mainactivity to termactivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -66,6 +66,7 @@ public abstract class ScheduleDatabase extends RoomDatabase {
                 mTermDao.insert(term);
                 term = new TermEntity(2, "Summer", "10/12/25", "12/13/27");
                 mTermDao.insert(term);
+
             });
         }
     };

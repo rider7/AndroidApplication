@@ -70,7 +70,7 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
     @Override
     public void onBindViewHolder(TermViewHolder holder, int position) {
         if(mTerm!=null){
-            TermEntity current = mTerm.get(position);
+            final TermEntity current = mTerm.get(position);
             holder.termItemView.setText(current.getTermTitle());
 //            holder.termItemView2.setText(Integer.toString(current.getTermID()));
 //            holder.termItemView3.setText(current.getTermStart());

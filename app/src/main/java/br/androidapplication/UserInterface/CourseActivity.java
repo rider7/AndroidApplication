@@ -60,7 +60,7 @@ public class CourseActivity  extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course);
-        courseTermID=getIntent().getIntExtra("termID",2);
+        courseTermID=getIntent().getIntExtra("termID",-1);
         if (courseTermID==-1)courseTermID=-1;
         repository= new ScheduleRepository(getApplication());
         List<TermEntity> allTerms=repository.getAllTerms();

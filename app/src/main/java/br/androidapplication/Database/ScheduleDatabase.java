@@ -49,6 +49,7 @@ public abstract class ScheduleDatabase extends RoomDatabase {
         }
         return INSTANCE;
     }
+
     private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
 
         @Override
@@ -64,7 +65,9 @@ public abstract class ScheduleDatabase extends RoomDatabase {
                 AssessmentDAO mAssessmentDao = INSTANCE.assessmentDAO();
 
                 // Delete database data in the beginning.
-                //mTermDao.deleteAllTerms();
+                mTermDao.deleteAllTerms();
+                mCourseDao.deleteAllCourses();
+                mAssessmentDao.deleteAllAssessments();
 
                 //Insert test data to make sure db and tables are setup correctly
                 TermEntity term = new TermEntity(3, "Spring", "10/12/25", "12/13/27");
@@ -85,8 +88,6 @@ public abstract class ScheduleDatabase extends RoomDatabase {
                 mAssessmentDao.insert(assessment);
                 assessment = new AssessmentEntity(2, 1, "Objective", "Final", "12/04/11");
                 mAssessmentDao.insert(assessment);
-
-
             });
         }
     };

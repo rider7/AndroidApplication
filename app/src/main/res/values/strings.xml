@@ -16,4 +16,5 @@
     <string name="textview3">TextView3</string>
     <string name="my_terms">My Terms</string>
     <string name="my_courses">My Courses</string>
+    <string name="math">Math</string>
 </resources>

@@ -10,19 +10,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import br.androidapplication.Database.ScheduleRepository;
-import br.androidapplication.Entity.TermEntity;
 import br.androidapplication.R;
 
 import android.content.Intent;
 import android.widget.EditText;
-
-import java.util.Objects;
 
 public class TermActivity extends AppCompatActivity {
     int id;
     String title;
     EditText editTitle;
     private ScheduleRepository repository;
+
 
     //New code based on My Bicycle Cohort transferring mainactivity to termactivity
     @Override

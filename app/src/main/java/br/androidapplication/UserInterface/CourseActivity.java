@@ -68,19 +68,9 @@ public class CourseActivity  extends AppCompatActivity {
         for(TermEntity t:allTerms){
             if(t.getTermID()==courseTermID)currentTerm=t;
         }
-
-//        name=getIntent().getStringExtra("TermName");
-//        price=getIntent().getStringExtra("TermPrice");
         editTermTitle=findViewById(R.id.TermTitle);
         editTermStart=findViewById(R.id.TermStart);
         editTermEnd=findViewById(R.id.TermEnd);
-//        editCourseTitle=findViewById(R.id.TermName);
-//        editCourseStart=findViewById(R.id.TermPrice);
-//        editCourseEnd=findViewById(R.id.TermName);
-//        editCourseStatus=findViewById(R.id.TermPrice);
-//        editInstructorName=findViewById(R.id.TermName);
-//        editInstructorNumber=findViewById(R.id.TermPrice);
-//        editInstructorEmail=findViewById(R.id.TermPrice);
 
         if(currentTerm!=null){
             termTitle=currentTerm.getTermTitle();
@@ -111,14 +101,19 @@ public class CourseActivity  extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_delete, menu);
-        return true;
-    }
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.delete) {
+            if(numCourses==0) {
+                repository.delete(currentTerm);
+            }
+            else{
+                Toast.makeText(getApplicationContext(),"Can't delete a term with courses",Toast.LENGTH_LONG).show();// make another toast
+            }
+        }
         switch (item.getItemId()) {
             case android.R.id.home:
                 this.finish();
@@ -126,6 +121,14 @@ public class CourseActivity  extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_delete, menu);
+        return true;
+    }
+
+
 
 //    public void addPart(View view) {
 //        Intent intent=new Intent(PartActivity.this,PartDetail.class);

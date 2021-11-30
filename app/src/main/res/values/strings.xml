@@ -18,4 +18,5 @@
     <string name="my_courses">My Courses</string>
     <string name="math">Math</string>
     <string name="delete">"Delete "</string>
+    <string name="delete_term">Delete Term</string>
 </resources>

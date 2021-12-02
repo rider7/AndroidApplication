@@ -82,9 +82,11 @@ public abstract class ScheduleDatabase extends RoomDatabase {
                 mCourseDao.insert(course);
                 course = new CourseEntity(2, 3, "English", "12/03/12", "11/04/12", "Completed", "Matthew Johnson", "210-256-4578", "matt@gmail.com");
                 mCourseDao.insert(course);
+                course = new CourseEntity(1, 3, "Test", "12/03/12", "11/04/12", "Completed", "Matthew Johnson", "210-256-4578", "matt@gmail.com");
+                mCourseDao.insert(course);
 
                 //Assessment data
-                AssessmentEntity assessment = new AssessmentEntity(1, 2, "Performance", "MidTerm", "12/04/12");
+                AssessmentEntity assessment = new AssessmentEntity(1, 3, "Performance", "MidTerm", "12/04/12");
                 mAssessmentDao.insert(assessment);
                 assessment = new AssessmentEntity(2, 1, "Objective", "Final", "12/04/11");
                 mAssessmentDao.insert(assessment);

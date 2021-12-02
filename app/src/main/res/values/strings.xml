@@ -19,4 +19,5 @@
     <string name="math">Math</string>
     <string name="delete">"Delete "</string>
     <string name="delete_term">Delete Term</string>
+    <string name="refresh">Refresh</string>
 </resources>

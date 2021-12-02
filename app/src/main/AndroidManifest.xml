@@ -28,6 +28,11 @@
             android:label="My Terms"
             android:theme="@style/Theme.AndroidApplication.ActionBar">
         </activity>
+        <activity
+            android:name=".UserInterface.AssessmentActivity"
+            android:label="My Courses"
+            android:theme="@style/Theme.AndroidApplication.ActionBar">
+        </activity>
     </application>
 
 </manifest>

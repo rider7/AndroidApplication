@@ -25,7 +25,8 @@ import br.androidapplication.R;
 
 public class CourseActivity  extends AppCompatActivity {
     private ScheduleRepository repository;
-    
+
+    int id;
     int courseID;
     int courseTermID;
     String courseTitle;
@@ -91,7 +92,8 @@ public class CourseActivity  extends AppCompatActivity {
         for(CourseEntity c:repository.getAllCourses()){
             if(c.getCourseTermID()==courseTermID)filteredCourses.add(c);
         }
-        numCourses=filteredCourses.size();
+        //WHy is this giving NPE issues
+        //numCourses=filteredCourses.size();
         adapter.setWords(filteredCourses);
 
         // calling the action bar
@@ -107,13 +109,13 @@ public class CourseActivity  extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.delete) {
-            if(numCourses==0) {
+            if (numCourses == 0) {
                 repository.delete(currentTerm);
-            }
-            else{
-                Toast.makeText(getApplicationContext(),"Can't delete a term with courses",Toast.LENGTH_LONG).show();// make another toast
+            } else {
+                Toast.makeText(getApplicationContext(), "Can't delete a term with courses", Toast.LENGTH_LONG).show();// make another toast
             }
         }
+
         switch (item.getItemId()) {
             case android.R.id.home:
                 this.finish();
@@ -125,6 +127,8 @@ public class CourseActivity  extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_delete, menu);
+        getMenuInflater().inflate(R.menu.menu_refresh, menu);
+
         return true;
     }
 
@@ -132,7 +136,9 @@ public class CourseActivity  extends AppCompatActivity {
     //Intent to change to courseActivity
     public void addCourse(View view) {
         Intent intent=new Intent(CourseActivity.this,AssessmentActivity.class);
-        intent.putExtra("TermID",courseTermID);
+        //This gets passed into the course record to track the course to the associated term
+        intent.putExtra("courseID",courseTermID);
+        //intent.putExtra("addID",-1);
         startActivity(intent);
     }
 
@@ -141,13 +147,17 @@ public class CourseActivity  extends AppCompatActivity {
     public void addTermFromScreen(View view) {
         TermEntity t;
 
-        if (courseTermID != -1)
-            t = new TermEntity(courseTermID, editTermTitle.getText().toString(),  editTermStart.getText().toString(), editTermEnd.getText().toString());
+        if (courseTermID != -1){
+//            List<TermEntity> allTerms = repository.getAllTerms();
+//            courseTermID = allTerms.get(allTerms.size() - 1).getTermID();
+            t = new TermEntity(courseTermID, editTermTitle.getText().toString(),  editTermStart.getText().toString(), editTermEnd.getText().toString());}
         else {
             List<TermEntity> allTerms = repository.getAllTerms();
             courseTermID = allTerms.get(allTerms.size() - 1).getTermID();
             t = new TermEntity(++courseTermID, editTermTitle.getText().toString(),  editTermStart.getText().toString(), editTermEnd.getText().toString());
         }
         repository.insert(t);
+        Intent intent = new Intent (CourseActivity.this, TermActivity.class);
+        startActivity(intent);
     }
 }

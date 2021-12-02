@@ -5,12 +5,18 @@
 
     <TextView
         android:id="@+id/assessmentTextView"
-        android:layout_width="200dp"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:background="@android:color/holo_orange_light" />
     <TextView
         android:id="@+id/assessmentTextView2"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@android:color/holo_orange_light" />
+    <TextView
+        android:id="@+id/assessmentTextView3"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"

@@ -25,7 +25,7 @@ public class TermActivity extends AppCompatActivity {
     //New code based on My Bicycle Cohort transferring mainactivity to termactivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //PartDetail.id2=-1;
+        AssessmentActivity.id2=-1;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_term);
         repository = new ScheduleRepository(getApplication());

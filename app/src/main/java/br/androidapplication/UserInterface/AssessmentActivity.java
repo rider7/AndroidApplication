@@ -64,7 +64,7 @@ import br.androidapplication.R;
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_assessment);
             courseAssessmentID=getIntent().getIntExtra("courseID",-1);
-            //id2=getIntent().getIntExtra("addID",-1);
+            id2=getIntent().getIntExtra("addID",-1);
 //            courseAssessmentID=getIntent().getIntExtra("courseID",-1);
 //            courseTitle=getIntent().getStringExtra("courseTitle");;
 //            courseStart=getIntent().getStringExtra("courseStart");;
@@ -73,7 +73,7 @@ import br.androidapplication.R;
 //            instructorName=getIntent().getStringExtra("instructorName");;
 //            instructorNumber=getIntent().getStringExtra("instructorNumber");;
 //            instructorEmail=getIntent().getStringExtra("instructorAddress");;
-            id2=courseAssessmentID;
+            //id2=courseAssessmentID;
             if (courseAssessmentID==-1)courseAssessmentID=-1;
             repository= new ScheduleRepository(getApplication());
             List<CourseEntity> allCourses=repository.getAllCourses();
@@ -101,7 +101,7 @@ import br.androidapplication.R;
                 instructorNumber=currentCourse.getInstructorNumber();
                 instructorEmail=currentCourse.getInstructorAddress();
             }
-            if(courseAssessmentID!=-1){
+            if(courseAssessmentID!=-1&&id2==-1){
                 editCourseTitle.setText(courseTitle);
                 editCourseStart.setText(courseStart);
                 editCourseEnd.setText(courseEnd);

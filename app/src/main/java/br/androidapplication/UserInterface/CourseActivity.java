@@ -138,7 +138,7 @@ public class CourseActivity  extends AppCompatActivity {
         Intent intent=new Intent(CourseActivity.this,AssessmentActivity.class);
         //This gets passed into the course record to track the course to the associated term
         intent.putExtra("courseID",courseTermID);
-        //intent.putExtra("addID",-1);
+        intent.putExtra("addID",0);
         startActivity(intent);
     }
 

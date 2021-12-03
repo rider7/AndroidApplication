@@ -33,6 +33,11 @@
             android:label="My Courses"
             android:theme="@style/Theme.AndroidApplication.ActionBar">
         </activity>
+        <activity
+            android:name=".UserInterface.EditActivity"
+            android:label="My Assessments"
+            android:theme="@style/Theme.AndroidApplication.ActionBar">
+        </activity>
     </application>
 
 </manifest>

@@ -29,6 +29,7 @@ public class CourseActivity  extends AppCompatActivity {
     int id;
     int courseID;
     int courseTermID;
+    int termID;
     String courseTitle;
     String courseStart;
     String courseEnd;
@@ -59,15 +60,17 @@ public class CourseActivity  extends AppCompatActivity {
     //Why is the Term Adapter not passing the values to onCreate for the CourseActivity?
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course);
-        courseTermID=getIntent().getIntExtra("termID",-1);
-        if (courseTermID==-1)courseTermID=-1;
+        termID=getIntent().getIntExtra("termID",-1);
+
+        if (termID==-1)termID=-1;
         repository= new ScheduleRepository(getApplication());
         List<TermEntity> allTerms=repository.getAllTerms();
 
         for(TermEntity t:allTerms){
-            if(t.getTermID()==courseTermID)currentTerm=t;
+            if(t.getTermID()==termID)currentTerm=t;
         }
         editTermTitle=findViewById(R.id.TermTitle);
         editTermStart=findViewById(R.id.TermStart);
@@ -78,7 +81,7 @@ public class CourseActivity  extends AppCompatActivity {
             termStart=currentTerm.getTermStart();
             termEnd=currentTerm.getTermEnd();
         }
-        if(courseTermID!=-1){
+        if(termID!=-1){
             editTermTitle.setText(termTitle);
             editTermStart.setText(termStart);
             editTermEnd.setText(termEnd);
@@ -90,10 +93,10 @@ public class CourseActivity  extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         List<CourseEntity> filteredCourses=new ArrayList<>();
         for(CourseEntity c:repository.getAllCourses()){
-            if(c.getCourseTermID()==courseTermID)filteredCourses.add(c);
+            if(c.getCourseTermID()==termID)filteredCourses.add(c);
         }
         //WHy is this giving NPE issues
-        //numCourses=filteredCourses.size();
+        numCourses=filteredCourses.size();
         adapter.setWords(filteredCourses);
 
         // calling the action bar
@@ -137,8 +140,18 @@ public class CourseActivity  extends AppCompatActivity {
     public void addCourse(View view) {
         Intent intent=new Intent(CourseActivity.this,AssessmentActivity.class);
         //This gets passed into the course record to track the course to the associated term
-        intent.putExtra("courseID",courseTermID);
+        //intent.putExtra("courseID",termID);
         intent.putExtra("addID",0);
+        intent.putExtra("termID",termID);
+        intent.putExtra("courseID",-1);
+        intent.putExtra("title","title");
+        intent.putExtra("start","start");
+        intent.putExtra("end","end");
+        intent.putExtra("status","status");
+        intent.putExtra("name","name");
+        intent.putExtra("number","number");
+        intent.putExtra("email","email");
+        //id2=courseAssessmentID;
         startActivity(intent);
     }
 
@@ -147,17 +160,17 @@ public class CourseActivity  extends AppCompatActivity {
     public void addTermFromScreen(View view) {
         TermEntity t;
 
-        if (courseTermID != -1){
+        if (termID != -1){
 //            List<TermEntity> allTerms = repository.getAllTerms();
 //            courseTermID = allTerms.get(allTerms.size() - 1).getTermID();
-            t = new TermEntity(courseTermID, editTermTitle.getText().toString(),  editTermStart.getText().toString(), editTermEnd.getText().toString());}
+            t = new TermEntity(termID, editTermTitle.getText().toString(),  editTermStart.getText().toString(), editTermEnd.getText().toString());}
         else {
             List<TermEntity> allTerms = repository.getAllTerms();
-            courseTermID = allTerms.get(allTerms.size() - 1).getTermID();
-            t = new TermEntity(++courseTermID, editTermTitle.getText().toString(),  editTermStart.getText().toString(), editTermEnd.getText().toString());
+            termID = allTerms.get(allTerms.size() - 1).getTermID();
+            t = new TermEntity(++termID, editTermTitle.getText().toString(),  editTermStart.getText().toString(), editTermEnd.getText().toString());
         }
         repository.insert(t);
-        Intent intent = new Intent (CourseActivity.this, TermActivity.class);
-        startActivity(intent);
+//        Intent intent = new Intent (CourseActivity.this, TermActivity.class);
+//        startActivity(intent);
     }
 }

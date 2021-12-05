@@ -27,6 +27,7 @@ import br.androidapplication.R;
         private ScheduleRepository repository;
         static int id2;
         int assessmentID;
+        int courseID;
         int courseTermID;
         int courseAssessmentID;
         String courseTitle;
@@ -63,8 +64,16 @@ import br.androidapplication.R;
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_assessment);
-            courseAssessmentID=getIntent().getIntExtra("courseID",-1);
-            id2=getIntent().getIntExtra("addID",-1);
+            courseTermID=getIntent().getIntExtra("termID",-1);
+            courseID=getIntent().getIntExtra("courseID",-1);
+            courseTitle=getIntent().getStringExtra("title");
+            courseStart=getIntent().getStringExtra("start");
+            courseEnd=getIntent().getStringExtra("end");
+            courseStatus=getIntent().getStringExtra("status");
+            instructorName=getIntent().getStringExtra("name");
+            instructorNumber=getIntent().getStringExtra("number");
+            instructorEmail=getIntent().getStringExtra("email");
+            id2=courseAssessmentID;
 //            courseAssessmentID=getIntent().getIntExtra("courseID",-1);
 //            courseTitle=getIntent().getStringExtra("courseTitle");;
 //            courseStart=getIntent().getStringExtra("courseStart");;
@@ -74,13 +83,13 @@ import br.androidapplication.R;
 //            instructorNumber=getIntent().getStringExtra("instructorNumber");;
 //            instructorEmail=getIntent().getStringExtra("instructorAddress");;
             //id2=courseAssessmentID;
-            if (courseAssessmentID==-1)courseAssessmentID=-1;
+            if (courseID==-1)courseID=-1;
             repository= new ScheduleRepository(getApplication());
             List<CourseEntity> allCourses=repository.getAllCourses();
 
             //This should be getCourseTermID()???
             for(CourseEntity c:allCourses){
-                if(c.getCourseID()==courseAssessmentID)currentCourse=c;
+                if(c.getCourseID()==courseID)currentCourse=c;
                 //if(c.getCourseTermID()==courseAssessmentID)currentCourse=c;
             }
 
@@ -101,7 +110,8 @@ import br.androidapplication.R;
                 instructorNumber=currentCourse.getInstructorNumber();
                 instructorEmail=currentCourse.getInstructorAddress();
             }
-            if(courseAssessmentID!=-1&&id2==-1){
+//            if(courseAssessmentID!=-1&&id2==-1){
+            if(courseID!=-1){
                 editCourseTitle.setText(courseTitle);
                 editCourseStart.setText(courseStart);
                 editCourseEnd.setText(courseEnd);
@@ -160,8 +170,9 @@ import br.androidapplication.R;
 
         //Intent to change to courseActivity
         public void addAssessment(View view) {
-            Intent intent=new Intent(br.androidapplication.UserInterface.AssessmentActivity.this,CourseActivity.class);
+            Intent intent=new Intent(br.androidapplication.UserInterface.AssessmentActivity.this,EditActivity.class);
             intent.putExtra("AssessmentID",courseAssessmentID);
+            intent.putExtra("addID",0);
             startActivity(intent);
         }
 
@@ -170,14 +181,16 @@ import br.androidapplication.R;
         public void addCourseFromScreen(View view) {
             CourseEntity c;
 
-            if (courseAssessmentID != -1) {
-                List<CourseEntity> allCourses = repository.getAllCourses();
-                courseAssessmentID = allCourses.get(allCourses.size() - 1).getCourseID();
-                c = new CourseEntity(courseAssessmentID, courseTermID, editCourseTitle.getText().toString(), editCourseStart.getText().toString(), editCourseEnd.getText().toString(), editCourseStatus.getText().toString(), editInstructorName.getText().toString(), editInstructorNumber.getText().toString(), editInstructorEmail.getText().toString());
+            if (courseID != -1) {
+//                List<CourseEntity> allCourses = repository.getAllCourses();
+//                courseAssessmentID = allCourses.get(allCourses.size() - 1).getCourseID();
+
+                c = new CourseEntity(courseID, courseTermID, editCourseTitle.getText().toString(), editCourseStart.getText().toString(), editCourseEnd.getText().toString(), editCourseStatus.getText().toString(), editInstructorName.getText().toString(), editInstructorNumber.getText().toString(), "email");
             }else {
                 List<CourseEntity> allCourses = repository.getAllCourses();
-                courseAssessmentID = allCourses.get(allCourses.size() - 1).getCourseID();
-                c = new CourseEntity(++courseAssessmentID, courseTermID, editCourseTitle.getText().toString(),  editCourseStart.getText().toString(), editCourseEnd.getText().toString(), editCourseStatus.getText().toString(), editInstructorName.getText().toString(), editInstructorNumber.getText().toString(), editInstructorEmail.getText().toString());
+                courseID = allCourses.get(allCourses.size() - 1).getCourseID();
+
+                c = new CourseEntity(++courseID, courseTermID, editCourseTitle.getText().toString(),  editCourseStart.getText().toString(), editCourseEnd.getText().toString(), editCourseStatus.getText().toString(), editInstructorName.getText().toString(), editInstructorNumber.getText().toString(), editInstructorEmail.getText().toString());
             }
             repository.insert(c);
 //            Intent intent = new Intent (AssessmentActivity.this, CourseActivity.class);

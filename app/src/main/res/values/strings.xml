@@ -20,4 +20,6 @@
     <string name="delete">"Delete "</string>
     <string name="delete_term">Delete Term</string>
     <string name="refresh">Refresh</string>
+    <string name="channel_name">channel</string>
+    <string name="channel_description">channel description</string>
 </resources>

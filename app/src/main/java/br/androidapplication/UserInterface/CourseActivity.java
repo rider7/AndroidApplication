@@ -151,6 +151,7 @@ public class CourseActivity  extends AppCompatActivity {
         intent.putExtra("name","name");
         intent.putExtra("number","number");
         intent.putExtra("email","email");
+        intent.putExtra("notes","notes");
         //id2=courseAssessmentID;
         startActivity(intent);
     }

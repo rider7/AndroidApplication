@@ -37,6 +37,7 @@ import br.androidapplication.R;
         String instructorName;
         String instructorNumber;
         String instructorEmail;
+        String notes;
 //        String termTitle;
 //        String termStart;
 //        String termEnd;
@@ -49,6 +50,7 @@ import br.androidapplication.R;
         EditText editInstructorName;
         EditText editInstructorNumber;
         EditText editInstructorEmail;
+        EditText editNotes;
 //        EditText editTermTitle;
 //        EditText editTermStart;
 //        EditText editTermEnd;
@@ -73,6 +75,7 @@ import br.androidapplication.R;
             instructorName=getIntent().getStringExtra("name");
             instructorNumber=getIntent().getStringExtra("number");
             instructorEmail=getIntent().getStringExtra("email");
+            notes=getIntent().getStringExtra("notes");
             id2=courseAssessmentID;
 //            courseAssessmentID=getIntent().getIntExtra("courseID",-1);
 //            courseTitle=getIntent().getStringExtra("courseTitle");;
@@ -100,6 +103,7 @@ import br.androidapplication.R;
             editInstructorName=findViewById(R.id.InstructorName);;
             editInstructorNumber=findViewById(R.id.InstructorNumber);;
             editInstructorEmail=findViewById(R.id.InstructorEmail);;
+            editNotes=findViewById(R.id.Notes);
 
             if(currentCourse!=null){
                 courseTitle=currentCourse.getCourseTitle();
@@ -109,6 +113,7 @@ import br.androidapplication.R;
                 instructorName=currentCourse.getInstructorName();
                 instructorNumber=currentCourse.getInstructorNumber();
                 instructorEmail=currentCourse.getInstructorAddress();
+                notes=currentCourse.getNotes();
             }
 //            if(courseAssessmentID!=-1&&id2==-1){
             if(courseID!=-1){
@@ -119,6 +124,7 @@ import br.androidapplication.R;
                 editInstructorName.setText(instructorName);
                 editInstructorNumber.setText(instructorNumber);
                 editInstructorEmail.setText(instructorEmail);
+                editNotes.setText(notes);
             }
             repository= new ScheduleRepository(getApplication());
             RecyclerView recyclerView = findViewById(R.id.associated_assessments);
@@ -164,6 +170,7 @@ import br.androidapplication.R;
         public boolean onCreateOptionsMenu(Menu menu) {
             // Inflate the menu; this adds items to the action bar if it is present.
             getMenuInflater().inflate(R.menu.menu_delete, menu);
+            getMenuInflater().inflate(R.menu.menu_sharing, menu);
             return true;
         }
 
@@ -186,12 +193,12 @@ import br.androidapplication.R;
 //                List<CourseEntity> allCourses = repository.getAllCourses();
 //                courseAssessmentID = allCourses.get(allCourses.size() - 1).getCourseID();
 
-                c = new CourseEntity(courseID, courseTermID, editCourseTitle.getText().toString(), editCourseStart.getText().toString(), editCourseEnd.getText().toString(), editCourseStatus.getText().toString(), editInstructorName.getText().toString(), editInstructorNumber.getText().toString(), "email");
+                c = new CourseEntity(courseID, courseTermID, editCourseTitle.getText().toString(), editCourseStart.getText().toString(), editCourseEnd.getText().toString(), editCourseStatus.getText().toString(), editInstructorName.getText().toString(), editInstructorNumber.getText().toString(), editInstructorEmail.getText().toString(), editNotes.getText().toString());
             }else {
                 List<CourseEntity> allCourses = repository.getAllCourses();
                 courseID = allCourses.get(allCourses.size() - 1).getCourseID();
 
-                c = new CourseEntity(++courseID, courseTermID, editCourseTitle.getText().toString(),  editCourseStart.getText().toString(), editCourseEnd.getText().toString(), editCourseStatus.getText().toString(), editInstructorName.getText().toString(), editInstructorNumber.getText().toString(), editInstructorEmail.getText().toString());
+                c = new CourseEntity(++courseID, courseTermID, editCourseTitle.getText().toString(),  editCourseStart.getText().toString(), editCourseEnd.getText().toString(), editCourseStatus.getText().toString(), editInstructorName.getText().toString(), editInstructorNumber.getText().toString(), editInstructorEmail.getText().toString(), editNotes.getText().toString());
             }
             repository.insert(c);
             //May need update instead of insert

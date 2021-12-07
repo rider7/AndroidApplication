@@ -1,5 +1,9 @@
 package br.androidapplication.UserInterface;
 
+import android.app.AlarmManager;
+import android.app.DatePickerDialog;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -15,6 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import br.androidapplication.Database.ScheduleRepository;
@@ -25,6 +30,7 @@ import br.androidapplication.R;
 
 public class EditActivity  extends AppCompatActivity {
     private ScheduleRepository repository;
+    public static int numAlert;
     static int id2;
     int assessmentID;
     int courseTermID;
@@ -43,6 +49,9 @@ public class EditActivity  extends AppCompatActivity {
     public static int numCourses;
     public static int numAssessments;
 
+    Calendar myCalendar=Calendar.getInstance();
+    DatePickerDialog.OnDateSetListener  myDate;
+    Long date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,16 +114,35 @@ public class EditActivity  extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.sharing) {
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
+            // (Optional) Here we're setting the title of the content
+            sendIntent.putExtra(Intent.EXTRA_TITLE, "Send message title");
+            sendIntent.setType("text/plain");
 
+            Intent shareIntent = Intent.createChooser(sendIntent, null);
+            startActivity(shareIntent);
+            return true;
+        }
+        if (id == R.id.notifications) {
+            Intent intent=new Intent(EditActivity.this,MyReceiver.class);
+            intent.putExtra("key","This is a short message");
+            PendingIntent sender= PendingIntent.getBroadcast(EditActivity.this,++numAlert,intent,0);
+            AlarmManager alarmManager=(AlarmManager)getSystemService(Context.ALARM_SERVICE);
+            date=myCalendar.getTimeInMillis();
+            alarmManager.set(AlarmManager.RTC_WAKEUP, date, sender);
+            return true;
+        }
         //noinspection SimplifiableIfStatement
         if (id == R.id.delete) {
-            if(numAssessments==0) {
                 repository.delete(currentAssessment);
+                Intent intent = new Intent (EditActivity.this, AssessmentActivity.class);
+                intent.putExtra("courseID",courseAssessmentID);
+                startActivity(intent);
             }
-            else{
-                Toast.makeText(getApplicationContext(),"Can't delete a course with assessments",Toast.LENGTH_LONG).show();// make another toast
-            }
-        }
         switch (item.getItemId()) {
             case android.R.id.home:
                 this.finish();
@@ -126,6 +154,7 @@ public class EditActivity  extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_delete, menu);
+        getMenuInflater().inflate(R.menu.menu_sharing, menu);
         return true;
     }
 

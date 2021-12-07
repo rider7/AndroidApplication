@@ -15,8 +15,9 @@ public class CourseEntity {
     private String instructorName;
     private String instructorNumber;
     private String instructorAddress;
+    private String notes;
 
-    public CourseEntity(int courseID, int courseTermID, String courseTitle, String courseStart, String courseEnd, String courseStatus, String instructorName, String instructorNumber, String instructorAddress) {
+    public CourseEntity(int courseID, int courseTermID, String courseTitle, String courseStart, String courseEnd, String courseStatus, String instructorName, String instructorNumber, String instructorAddress, String notes) {
         this.courseID = courseID;
         this.courseTermID = courseTermID;
         this.courseTitle = courseTitle;
@@ -26,6 +27,7 @@ public class CourseEntity {
         this.instructorName = instructorName;
         this.instructorNumber = instructorNumber;
         this.instructorAddress = instructorAddress;
+        this.notes = notes;
     }
 
     @Override
@@ -40,6 +42,7 @@ public class CourseEntity {
                 ", instructorName='" + instructorName + '\'' +
                 ", instructorNumber='" + instructorNumber + '\'' +
                 ", instructorAddress='" + instructorAddress + '\'' +
+                ", notes='" + notes + '\'' +
                 '}';
     }
 
@@ -112,4 +115,8 @@ public class CourseEntity {
     public void setCourseTermID(int courseTermID) {
         this.courseTermID = courseTermID;
     }
+
+    public String getNotes() { return notes; }
+
+    public void setNotes(String notes) { this.notes = notes; }
 }

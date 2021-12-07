@@ -4,8 +4,6 @@ package br.androidapplication.Database;
 import br.androidapplication.DAO.AssessmentDAO;
 import br.androidapplication.DAO.CourseDAO;
 import br.androidapplication.DAO.TermDAO;
-import br.androidapplication.DAO.CourseDAO;
-import br.androidapplication.DAO.AssessmentDAO;
 import br.androidapplication.Entity.TermEntity;
 import br.androidapplication.Entity.CourseEntity;
 import br.androidapplication.Entity.AssessmentEntity;
@@ -20,7 +18,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 //Annotate database with entity and version number
-@Database(entities = {TermEntity.class, CourseEntity.class, AssessmentEntity.class}, version = 5, exportSchema = false)
+@Database(entities = {TermEntity.class, CourseEntity.class, AssessmentEntity.class}, version = 6, exportSchema = false)
 
 public abstract class ScheduleDatabase extends RoomDatabase {
     public abstract TermDAO termDAO();
@@ -78,11 +76,11 @@ public abstract class ScheduleDatabase extends RoomDatabase {
                 mTermDao.insert(term);
 
                 //Course data
-                CourseEntity course = new CourseEntity(1, 2, "Math", "12/03/12", "11/04/12", "Completed", "Steven Jobs", "210-256-4578", "stevejobs@gmail.com");
+                CourseEntity course = new CourseEntity(1, 2, "Math", "12/03/12", "11/04/12", "Completed", "Steven Jobs", "210-256-4578", "stevejobs@gmail.com", "my notes lalalala");
                 mCourseDao.insert(course);
-                course = new CourseEntity(2, 3, "English", "12/03/12", "11/04/12", "Completed", "Matthew Johnson", "210-256-4578", "matt@gmail.com");
+                course = new CourseEntity(2, 3, "English", "12/03/12", "11/04/12", "Completed", "Matthew Johnson", "210-256-4578", "matt@gmail.com", "my notes lalalala");
                 mCourseDao.insert(course);
-                course = new CourseEntity(1, 3, "Test", "12/03/12", "11/04/12", "Completed", "Matthew Johnson", "210-256-4578", "matt@gmail.com");
+                course = new CourseEntity(1, 3, "Test", "12/03/12", "11/04/12", "Completed", "Matthew Johnson", "210-256-4578", "matt@gmail.com", null);
                 mCourseDao.insert(course);
 
                 //Assessment data

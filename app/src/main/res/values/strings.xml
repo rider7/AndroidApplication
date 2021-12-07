@@ -18,8 +18,10 @@
     <string name="my_courses">My Courses</string>
     <string name="math">Math</string>
     <string name="delete">"Delete "</string>
-    <string name="delete_term">Delete Term</string>
+    <string name="delete_term">Delete</string>
     <string name="refresh">Refresh</string>
     <string name="channel_name">channel</string>
     <string name="channel_description">channel description</string>
+    <string name="sharing">Sharing</string>
+    <string name="notifications">Notifications</string>
 </resources>

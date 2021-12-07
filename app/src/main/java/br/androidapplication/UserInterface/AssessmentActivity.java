@@ -65,6 +65,7 @@ import br.androidapplication.R;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
+
             setContentView(R.layout.activity_assessment);
             courseTermID=getIntent().getIntExtra("termID",-1);
             courseID=getIntent().getIntExtra("courseID",-1);

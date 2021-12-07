@@ -10,14 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidApplication">
         <activity
-            android:name=".UserInterface.MainActivity"
-            android:label="@string/app_name">
+            android:name=".UserInterface.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<!--        Declarative design of user interface-->
         <activity
             android:name=".UserInterface.TermActivity"
             android:label="@string/my_terms"

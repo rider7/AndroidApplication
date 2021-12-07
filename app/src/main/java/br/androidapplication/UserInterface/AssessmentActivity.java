@@ -193,6 +193,8 @@ import br.androidapplication.R;
                 c = new CourseEntity(++courseID, courseTermID, editCourseTitle.getText().toString(),  editCourseStart.getText().toString(), editCourseEnd.getText().toString(), editCourseStatus.getText().toString(), editInstructorName.getText().toString(), editInstructorNumber.getText().toString(), editInstructorEmail.getText().toString());
             }
             repository.insert(c);
+            //May need update instead of insert
+            //Need to put data to navigate backwards
 //            Intent intent = new Intent (AssessmentActivity.this, CourseActivity.class);
 //            startActivity(intent);
         }

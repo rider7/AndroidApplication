@@ -48,7 +48,12 @@ public class EditActivity  extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assessment_edit);
-        courseAssessmentID=getIntent().getIntExtra("AssessmentID",-1);
+        assessmentID=getIntent().getIntExtra("assessmentID",-1);
+        courseAssessmentID=getIntent().getIntExtra("courseAssessmentID",-1);
+        assessmentTitle=getIntent().getStringExtra("AssessmentTitle");
+        assessmentType=getIntent().getStringExtra("AssessmentType");
+        assessmentEnd=getIntent().getStringExtra("AssessmentEnd");
+
         id2=getIntent().getIntExtra("addID",-1);
 
 
@@ -59,7 +64,7 @@ public class EditActivity  extends AppCompatActivity {
 
         //This should be getCourseTermID()???
         for(AssessmentEntity a:allAssessments){
-            if(a.getAssessmentID()==courseAssessmentID)currentAssessment=a;
+            if(a.getAssessmentID()==assessmentID)currentAssessment=a;
             //if(c.getCourseTermID()==courseAssessmentID)currentCourse=c;
         }
 
@@ -125,25 +130,26 @@ public class EditActivity  extends AppCompatActivity {
     }
 
     //Intent to change to courseActivity
-    public void addAssessment(View view) {
-        Intent intent=new Intent(br.androidapplication.UserInterface.EditActivity.this,CourseActivity.class);
-        intent.putExtra("AssessmentID",courseAssessmentID);
-        startActivity(intent);
-    }
+//    public void addAssessment(View view) {
+//        Intent intent=new Intent(br.androidapplication.UserInterface.EditActivity.this,CourseActivity.class);
+//        intent.putExtra("assessmentID",courseAssessmentID);
+//        startActivity(intent);
+//    }
 
     public void addAssessmentFromScreen(View view) {
         AssessmentEntity a;
 
-        if (courseAssessmentID != -1) {
-            List<AssessmentEntity> allAssessments = repository.getAllAssessments();
-            courseAssessmentID = allAssessments.get(allAssessments.size() - 1).getAssessmentID();
-            a = new AssessmentEntity(courseAssessmentID, courseTermID, editAssessmentType.getText().toString(), editAssessmentTitle.getText().toString(), editAssessmentEnd.getText().toString());
+        if (assessmentID != -1&&assessmentID !=0) {
+//            List<AssessmentEntity> allAssessments = repository.getAllAssessments();
+//            courseAssessmentID = allAssessments.get(allAssessments.size() - 1).getAssessmentID();
+            a = new AssessmentEntity(assessmentID, courseAssessmentID, editAssessmentType.getText().toString(), editAssessmentTitle.getText().toString(), editAssessmentEnd.getText().toString());
         }else {
             List<AssessmentEntity> allAssessments = repository.getAllAssessments();
-            courseAssessmentID = allAssessments.get(allAssessments.size() - 1).getAssessmentID();
-            a = new AssessmentEntity(++courseAssessmentID, courseTermID, editAssessmentType.getText().toString(), editAssessmentTitle.getText().toString(), editAssessmentEnd.getText().toString());        }
+            assessmentID = allAssessments.get(allAssessments.size() - 1).getAssessmentID();
+            a = new AssessmentEntity(++assessmentID, courseAssessmentID, editAssessmentType.getText().toString(), editAssessmentTitle.getText().toString(), editAssessmentEnd.getText().toString());        }
         repository.insert(a);
             Intent intent = new Intent (EditActivity.this, AssessmentActivity.class);
+            intent.putExtra("courseID",courseAssessmentID);
             startActivity(intent);
     }
 }

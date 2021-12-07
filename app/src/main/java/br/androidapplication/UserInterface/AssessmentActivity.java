@@ -128,7 +128,7 @@ import br.androidapplication.R;
             List<AssessmentEntity> filteredAssessments=new ArrayList<>();
             //CourseAssessmentID is incorrectly showing 3
             for(AssessmentEntity a:repository.getAllAssessments()){
-                if(a.getCourseAssessmentID()==courseAssessmentID)filteredAssessments.add(a);
+                if(a.getCourseAssessmentID()==courseID)filteredAssessments.add(a);
             }
             numAssessments=filteredAssessments.size();
             adapter.setWords(filteredAssessments);
@@ -171,7 +171,8 @@ import br.androidapplication.R;
         //Intent to change to courseActivity
         public void addAssessment(View view) {
             Intent intent=new Intent(br.androidapplication.UserInterface.AssessmentActivity.this,EditActivity.class);
-            intent.putExtra("AssessmentID",courseAssessmentID);
+            intent.putExtra("assessmentID",courseAssessmentID);
+            intent.putExtra("courseAssessmentID",courseID);
             intent.putExtra("addID",0);
             startActivity(intent);
         }
@@ -194,8 +195,8 @@ import br.androidapplication.R;
             }
             repository.insert(c);
             //May need update instead of insert
-            //Need to put data to navigate backwards
-//            Intent intent = new Intent (AssessmentActivity.this, CourseActivity.class);
-//            startActivity(intent);
+            Intent intent = new Intent (AssessmentActivity.this, CourseActivity.class);
+            intent.putExtra("termID",courseTermID);
+            startActivity(intent);
         }
 }

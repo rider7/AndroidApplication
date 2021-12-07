@@ -170,7 +170,7 @@ public class CourseActivity  extends AppCompatActivity {
             t = new TermEntity(++termID, editTermTitle.getText().toString(),  editTermStart.getText().toString(), editTermEnd.getText().toString());
         }
         repository.insert(t);
-//        Intent intent = new Intent (CourseActivity.this, TermActivity.class);
-//        startActivity(intent);
+        Intent intent = new Intent (CourseActivity.this, TermActivity.class);
+        startActivity(intent);
     }
 }

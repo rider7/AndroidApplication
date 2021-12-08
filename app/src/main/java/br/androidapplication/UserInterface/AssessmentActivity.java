@@ -185,19 +185,19 @@ import br.androidapplication.R;
                 case R.id.notifications:
                     String courseName=editCourseTitle.getText().toString();
                     String dateFromScreen=editCourseStart.getText().toString();
-                    String dateFromScreen2=editCourseEnd.getText().toString();
+                    //String dateFromScreen2=editCourseEnd.getText().toString();
                     String myFormat = "MM/dd/yy";
                     SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
                     Date myDate = null;
-                    Date myDate2 = null;
+                    //Date myDate2 = null;
                     try {
                         myDate=sdf.parse(dateFromScreen);
-                        myDate2=sdf.parse(dateFromScreen2);
+                        //myDate2=sdf.parse(dateFromScreen2);
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
                     Long trigger = myDate.getTime();
-                    Long trigger2 = myDate2.getTime();
+                    //Long trigger2 = myDate2.getTime();
 
                     Intent intent=new Intent(AssessmentActivity.this,MyReceiver.class);
                     intent.putExtra("key","Check your start date for " + courseName );

@@ -10,17 +10,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -41,10 +37,12 @@ public class EditActivity  extends AppCompatActivity {
     int courseAssessmentID;
     String assessmentType;
     String assessmentTitle;
+    String assessmentStart;
     String assessmentEnd;
 
     EditText editAssessmentTitle;
     EditText editAssessmentType;
+    EditText editAssessmentStart;
     EditText editAssessmentEnd;
 
     TermEntity currentTerm;
@@ -65,6 +63,7 @@ public class EditActivity  extends AppCompatActivity {
         courseAssessmentID=getIntent().getIntExtra("courseAssessmentID",-1);
         assessmentTitle=getIntent().getStringExtra("AssessmentTitle");
         assessmentType=getIntent().getStringExtra("AssessmentType");
+        assessmentStart=getIntent().getStringExtra("AssessmentStart");
         assessmentEnd=getIntent().getStringExtra("AssessmentEnd");
 
         id2=getIntent().getIntExtra("addID",-1);
@@ -83,16 +82,19 @@ public class EditActivity  extends AppCompatActivity {
 
         editAssessmentTitle=findViewById(R.id.AssessmentTitle);;
         editAssessmentType=findViewById(R.id.AssessmentType);;
+        editAssessmentStart=findViewById(R.id.AssessmentStart);;
         editAssessmentEnd=findViewById(R.id.AssessmentEnd);;
 
         if(currentAssessment!=null){
             assessmentTitle=currentAssessment.getAssessmentTitle();
             assessmentType=currentAssessment.getAssessmentType();
+            assessmentStart=currentAssessment.getAssessmentStart();
             assessmentEnd=currentAssessment.getAssessmentEnd();
         }
         if(courseAssessmentID!=-1&&id2==-1){
             editAssessmentTitle.setText(assessmentTitle);
             editAssessmentType.setText(assessmentType);
+            editAssessmentStart.setText(assessmentStart);
             editAssessmentEnd.setText(assessmentEnd);
         }
 //        repository= new ScheduleRepository(getApplication());
@@ -190,11 +192,11 @@ public class EditActivity  extends AppCompatActivity {
         if (assessmentID != -1&&assessmentID !=0) {
 //            List<AssessmentEntity> allAssessments = repository.getAllAssessments();
 //            courseAssessmentID = allAssessments.get(allAssessments.size() - 1).getAssessmentID();
-            a = new AssessmentEntity(assessmentID, courseAssessmentID, editAssessmentType.getText().toString(), editAssessmentTitle.getText().toString(), editAssessmentEnd.getText().toString());
+            a = new AssessmentEntity(assessmentID, courseAssessmentID, editAssessmentType.getText().toString(), editAssessmentTitle.getText().toString(), editAssessmentStart.getText().toString(), editAssessmentEnd.getText().toString());
         }else {
             List<AssessmentEntity> allAssessments = repository.getAllAssessments();
             assessmentID = allAssessments.get(allAssessments.size() - 1).getAssessmentID();
-            a = new AssessmentEntity(++assessmentID, courseAssessmentID, editAssessmentType.getText().toString(), editAssessmentTitle.getText().toString(), editAssessmentEnd.getText().toString());        }
+            a = new AssessmentEntity(++assessmentID, courseAssessmentID, editAssessmentType.getText().toString(), editAssessmentTitle.getText().toString(), editAssessmentStart.getText().toString(), editAssessmentEnd.getText().toString());        }
         repository.insert(a);
             Intent intent = new Intent (EditActivity.this, AssessmentActivity.class);
             intent.putExtra("courseID",courseAssessmentID);

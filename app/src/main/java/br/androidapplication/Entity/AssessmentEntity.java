@@ -10,13 +10,15 @@ public class AssessmentEntity {
     private int courseAssessmentID;
     private String assessmentType; //Objective or Performance
     private String assessmentTitle;
+    private String assessmentStart;
     private String assessmentEnd;
 
-    public AssessmentEntity(int assessmentID, int courseAssessmentID, String assessmentType, String assessmentTitle, String assessmentEnd) {
+    public AssessmentEntity(int assessmentID, int courseAssessmentID, String assessmentType, String assessmentTitle, String assessmentStart, String assessmentEnd) {
         this.assessmentID = assessmentID;
         this.courseAssessmentID = courseAssessmentID;
         this.assessmentType = assessmentType;
         this.assessmentTitle = assessmentTitle;
+        this.assessmentStart = assessmentStart;
         this.assessmentEnd = assessmentEnd;
     }
 
@@ -27,6 +29,7 @@ public class AssessmentEntity {
                 ", courseAssessmentID=" + courseAssessmentID +
                 ", assessmentType='" + assessmentType + '\'' +
                 ", assessmentTitle='" + assessmentTitle + '\'' +
+                ", assessmentStart='" + assessmentEnd + '\'' +
                 ", assessmentEnd='" + assessmentEnd + '\'' +
                 '}';
     }
@@ -61,6 +64,14 @@ public class AssessmentEntity {
 
     public void setAssessmentTitle(String assessmentTitle) {
         this.assessmentTitle = assessmentTitle;
+    }
+
+    public String getAssessmentStart() {
+        return assessmentStart;
+    }
+
+    public void setAssessmentStart(String assessmentStart) {
+        this.assessmentStart = assessmentStart;
     }
 
     public String getAssessmentEnd() {

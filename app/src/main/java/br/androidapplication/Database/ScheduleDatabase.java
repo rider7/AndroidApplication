@@ -18,7 +18,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 //Annotate database with entity and version number
-@Database(entities = {TermEntity.class, CourseEntity.class, AssessmentEntity.class}, version = 6, exportSchema = false)
+@Database(entities = {TermEntity.class, CourseEntity.class, AssessmentEntity.class}, version = 7, exportSchema = false)
 
 public abstract class ScheduleDatabase extends RoomDatabase {
     public abstract TermDAO termDAO();
@@ -84,9 +84,9 @@ public abstract class ScheduleDatabase extends RoomDatabase {
                 mCourseDao.insert(course);
 
                 //Assessment data
-                AssessmentEntity assessment = new AssessmentEntity(1, 3, "Performance", "MidTerm", "12/04/12");
+                AssessmentEntity assessment = new AssessmentEntity(1, 3, "Performance", "MidTerm", "12/08/11", "12/09/12");
                 mAssessmentDao.insert(assessment);
-                assessment = new AssessmentEntity(2, 1, "Objective", "Final", "12/04/11");
+                assessment = new AssessmentEntity(2, 1, "Objective", "Final", "12/07/11", "12/04/11");
                 mAssessmentDao.insert(assessment);
             });
         }

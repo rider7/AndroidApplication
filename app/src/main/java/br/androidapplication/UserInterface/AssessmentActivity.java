@@ -183,23 +183,33 @@ import br.androidapplication.R;
                     startActivity(shareIntent);
                     return true;
                 case R.id.notifications:
+                    String courseName=editCourseTitle.getText().toString();
                     String dateFromScreen=editCourseStart.getText().toString();
+                    String dateFromScreen2=editCourseEnd.getText().toString();
                     String myFormat = "MM/dd/yy";
                     SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
                     Date myDate = null;
+                    Date myDate2 = null;
                     try {
                         myDate=sdf.parse(dateFromScreen);
+                        myDate2=sdf.parse(dateFromScreen2);
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
                     Long trigger = myDate.getTime();
+                    Long trigger2 = myDate2.getTime();
 
                     Intent intent=new Intent(AssessmentActivity.this,MyReceiver.class);
-                    intent.putExtra("key","Course is starting!");
+                    intent.putExtra("key","Check your start date for " + courseName );
                     PendingIntent sender= PendingIntent.getBroadcast(AssessmentActivity.this,++MainActivity.numAlert,intent,0);
                     AlarmManager alarmManager=(AlarmManager)getSystemService(Context.ALARM_SERVICE);
-                    //long date=1336226501635L;
                     alarmManager.set(AlarmManager.RTC_WAKEUP, trigger, sender);
+
+//                    Intent intent2=new Intent(AssessmentActivity.this,MyReceiver.class);
+//                    intent2.putExtra("key","Check your end date for " + courseName);
+//                    PendingIntent sender2= PendingIntent.getBroadcast(AssessmentActivity.this,++MainActivity.numAlert,intent,0);
+//                    AlarmManager alarmManager2=(AlarmManager)getSystemService(Context.ALARM_SERVICE);
+//                    alarmManager2.set(AlarmManager.RTC_WAKEUP, trigger2, sender2);
                     return true;
             }
             return super.onOptionsItemSelected(item);

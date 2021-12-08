@@ -174,6 +174,8 @@ import br.androidapplication.R;
                     Intent shareIntent = Intent.createChooser(sendIntent, null);
                     startActivity(shareIntent);
                     return true;
+                case R.id.notifications:
+
             }
             return super.onOptionsItemSelected(item);
         }

@@ -164,6 +164,16 @@ import br.androidapplication.R;
                 case android.R.id.home:
                     this.finish();
                     return true;
+                case R.id.sharing:
+                    Intent sendIntent = new Intent();
+                    sendIntent.setAction(Intent.ACTION_SEND);
+                    sendIntent.putExtra(Intent.EXTRA_TEXT, notes);
+                    sendIntent.putExtra(Intent.EXTRA_TITLE, "Here are my notes!");
+                    sendIntent.setType("text/plain");
+
+                    Intent shareIntent = Intent.createChooser(sendIntent, null);
+                    startActivity(shareIntent);
+                    return true;
             }
             return super.onOptionsItemSelected(item);
         }

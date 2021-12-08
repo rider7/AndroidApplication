@@ -76,7 +76,7 @@ public abstract class ScheduleDatabase extends RoomDatabase {
                 mTermDao.insert(term);
 
                 //Course data
-                CourseEntity course = new CourseEntity(1, 2, "Math", "12/03/12", "11/04/12", "Completed", "Steven Jobs", "210-256-4578", "stevejobs@gmail.com", "my notes lalalala");
+                CourseEntity course = new CourseEntity(1, 2, "Math", "12/03/12", "11/04/12", "Completed", "Steven Jobs", "210-256-4578", "stevejobs@gmail.com", "dont look at my notes");
                 mCourseDao.insert(course);
                 course = new CourseEntity(2, 3, "English", "12/03/12", "11/04/12", "Completed", "Matthew Johnson", "210-256-4578", "matt@gmail.com", "my notes lalalala");
                 mCourseDao.insert(course);

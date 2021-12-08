@@ -195,7 +195,7 @@ import br.androidapplication.R;
                     Long trigger = myDate.getTime();
 
                     Intent intent=new Intent(AssessmentActivity.this,MyReceiver.class);
-                    intent.putExtra("key","This is a short message");
+                    intent.putExtra("key","Course is starting!");
                     PendingIntent sender= PendingIntent.getBroadcast(AssessmentActivity.this,++MainActivity.numAlert,intent,0);
                     AlarmManager alarmManager=(AlarmManager)getSystemService(Context.ALARM_SERVICE);
                     //long date=1336226501635L;

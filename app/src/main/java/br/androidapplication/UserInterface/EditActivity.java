@@ -18,9 +18,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import br.androidapplication.Database.ScheduleRepository;
 import br.androidapplication.Entity.AssessmentEntity;
@@ -128,13 +132,24 @@ public class EditActivity  extends AppCompatActivity {
             return true;
         }
         if (id == R.id.notifications) {
-            Intent intent=new Intent(EditActivity.this,MyReceiver.class);
-            intent.putExtra("key","This is a short message");
-            PendingIntent sender= PendingIntent.getBroadcast(EditActivity.this,++numAlert,intent,0);
-            AlarmManager alarmManager=(AlarmManager)getSystemService(Context.ALARM_SERVICE);
-            date=myCalendar.getTimeInMillis();
-            alarmManager.set(AlarmManager.RTC_WAKEUP, date, sender);
-            return true;
+                String dateFromScreen=editAssessmentEnd.getText().toString();
+                String myFormat = "MM/dd/yy";
+                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+                Date myDate = null;
+                try {
+                    myDate=sdf.parse(dateFromScreen);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                Long trigger = myDate.getTime();
+
+                Intent intent=new Intent(EditActivity.this,MyReceiver.class);
+                intent.putExtra("key","End of Assessment!");
+                PendingIntent sender= PendingIntent.getBroadcast(EditActivity.this,++MainActivity.numAlert,intent,0);
+                AlarmManager alarmManager=(AlarmManager)getSystemService(Context.ALARM_SERVICE);
+                //long date=1336226501635L;
+                alarmManager.set(AlarmManager.RTC_WAKEUP, trigger, sender);
+                return true;
         }
         //noinspection SimplifiableIfStatement
         if (id == R.id.delete) {
@@ -143,11 +158,15 @@ public class EditActivity  extends AppCompatActivity {
                 intent.putExtra("courseID",courseAssessmentID);
                 startActivity(intent);
             }
+
+
+
         switch (item.getItemId()) {
             case android.R.id.home:
                 this.finish();
                 return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 

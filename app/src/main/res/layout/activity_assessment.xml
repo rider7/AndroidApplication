@@ -40,11 +40,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Course Start"/>
+
                 <EditText
                     android:id="@+id/CourseStart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    />
+                    android:hint="@string/date_hint" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -56,6 +57,7 @@
                     android:text="Course End"/>
                 <EditText
                     android:id="@+id/CourseEnd"
+                    android:hint="@string/date_hint"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     />

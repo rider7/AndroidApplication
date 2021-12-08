@@ -9,6 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidApplication">
+        <receiver
+            android:name=".UserInterface.MyReceiver"
+            android:enabled="true"
+            android:exported="true"></receiver>
         <activity
             android:name=".UserInterface.MainActivity">
             <intent-filter>
@@ -39,5 +43,4 @@
             android:theme="@style/Theme.AndroidApplication.ActionBar">
         </activity>
     </application>
-
 </manifest>

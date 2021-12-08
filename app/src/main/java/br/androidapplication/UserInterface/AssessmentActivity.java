@@ -1,5 +1,8 @@
 package br.androidapplication.UserInterface;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,8 +17,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import br.androidapplication.Database.ScheduleRepository;
 import br.androidapplication.Entity.AssessmentEntity;
@@ -25,6 +32,7 @@ import br.androidapplication.R;
 
     public class AssessmentActivity  extends AppCompatActivity {
         private ScheduleRepository repository;
+
         static int id2;
         int assessmentID;
         int courseID;
@@ -175,7 +183,24 @@ import br.androidapplication.R;
                     startActivity(shareIntent);
                     return true;
                 case R.id.notifications:
+                    String dateFromScreen=editCourseStart.getText().toString();
+                    String myFormat = "MM/dd/yy";
+                    SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+                    Date myDate = null;
+                    try {
+                        myDate=sdf.parse(dateFromScreen);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    Long trigger = myDate.getTime();
 
+                    Intent intent=new Intent(AssessmentActivity.this,MyReceiver.class);
+                    intent.putExtra("key","This is a short message");
+                    PendingIntent sender= PendingIntent.getBroadcast(AssessmentActivity.this,++MainActivity.numAlert,intent,0);
+                    AlarmManager alarmManager=(AlarmManager)getSystemService(Context.ALARM_SERVICE);
+                    //long date=1336226501635L;
+                    alarmManager.set(AlarmManager.RTC_WAKEUP, trigger, sender);
+                    return true;
             }
             return super.onOptionsItemSelected(item);
         }

@@ -26,7 +26,7 @@ import br.androidapplication.Entity.TermEntity;
 import br.androidapplication.R;
 //Main entry point into the application
 public class MainActivity extends AppCompatActivity {
-
+    public static int numAlert;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

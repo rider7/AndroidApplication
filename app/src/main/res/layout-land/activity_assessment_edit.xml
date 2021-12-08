@@ -64,6 +64,7 @@
 
                 <EditText
                     android:id="@+id/AssessmentEnd"
+                    android:hint="@string/date_hint"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>

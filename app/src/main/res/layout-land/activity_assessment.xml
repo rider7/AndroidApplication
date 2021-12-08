@@ -47,6 +47,7 @@
 
                 <EditText
                     android:id="@+id/CourseStart"
+                    android:hint="@string/date_hint"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -63,6 +64,7 @@
 
                 <EditText
                     android:id="@+id/CourseEnd"
+                    android:hint="@string/date_hint"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>

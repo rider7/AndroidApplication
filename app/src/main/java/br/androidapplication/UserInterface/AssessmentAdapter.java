@@ -17,16 +17,16 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
 
     class AssessmentViewHolder extends RecyclerView.ViewHolder {
         private final TextView AssessmentItemView;
-        private final TextView AssessmentItemView2;
-        private final TextView AssessmentItemView3;
+//        private final TextView AssessmentItemView2;
+//        private final TextView AssessmentItemView3;
 //        private final TextView AssessmentItemView4;
 
 
         private AssessmentViewHolder(View itemView) {
             super(itemView);
             AssessmentItemView = itemView.findViewById(R.id.assessmentTextView);
-            AssessmentItemView2 = itemView.findViewById(R.id.assessmentTextView2);
-            AssessmentItemView3 = itemView.findViewById(R.id.assessmentTextView3);
+//            AssessmentItemView2 = itemView.findViewById(R.id.assessmentTextView2);
+//            AssessmentItemView3 = itemView.findViewById(R.id.assessmentTextView3);
 //            AssessmentItemView4 = itemView.findViewById(R.id.assessmentTextView4);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -68,12 +68,12 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
         if (mAssessments != null) {
             AssessmentEntity current = mAssessments.get(position);
             holder.AssessmentItemView.setText(current.getAssessmentTitle());
-            holder.AssessmentItemView2.setText(Integer.toString(current.getCourseAssessmentID()));
-            holder.AssessmentItemView2.setText(current.getAssessmentType());
+//            holder.AssessmentItemView2.setText(Integer.toString(current.getCourseAssessmentID()));
+//            holder.AssessmentItemView2.setText(current.getAssessmentType());
         } else {
             // Covers the case of data not being ready yet.
             holder.AssessmentItemView.setText("No Word");
-            holder.AssessmentItemView2.setText("No Word");
+//            holder.AssessmentItemView2.setText("No Word");
         }
 
     }

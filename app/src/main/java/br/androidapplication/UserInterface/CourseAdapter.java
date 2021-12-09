@@ -18,15 +18,15 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
 
     class CourseViewHolder extends RecyclerView.ViewHolder {
         private final TextView CourseItemView;
-        private final TextView CourseItemView2;
-        private final TextView CourseItemView3;
+//        private final TextView CourseItemView2;
+//        private final TextView CourseItemView3;
 
 
         private CourseViewHolder(View itemView) {
             super(itemView);
             CourseItemView = itemView.findViewById(R.id.courseTextView);
-            CourseItemView2 = itemView.findViewById(R.id.courseTextView2);
-            CourseItemView3 = itemView.findViewById(R.id.courseTextView3);
+//            CourseItemView2 = itemView.findViewById(R.id.courseTextView2);
+//            CourseItemView3 = itemView.findViewById(R.id.courseTextView3);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -72,12 +72,12 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
         if (mCourses != null) {
             CourseEntity current = mCourses.get(position);
             holder.CourseItemView.setText(current.getCourseTitle());
-            holder.CourseItemView2.setText(Integer.toString(current.getCourseTermID()));
-            holder.CourseItemView3.setText(Integer.toString(current.getCourseID()));
+//            holder.CourseItemView2.setText(Integer.toString(current.getCourseTermID()));
+//            holder.CourseItemView3.setText(Integer.toString(current.getCourseID()));
         } else {
             // Covers the case of data not being ready yet.
             holder.CourseItemView.setText("No Word");
-            holder.CourseItemView2.setText("No Word");
+//            holder.CourseItemView2.setText("No Word");
         }
 
     }

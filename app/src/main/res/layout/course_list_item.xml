@@ -9,16 +9,16 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:background="@android:color/holo_orange_light" />
-    <TextView
-        android:id="@+id/courseTextView2"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@android:color/holo_orange_light" />
-    <TextView
-        android:id="@+id/courseTextView3"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@android:color/holo_orange_light" />
+<!--    <TextView-->
+<!--        android:id="@+id/courseTextView2"-->
+<!--        android:layout_width="50dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_margin="10dp"-->
+<!--        android:background="@android:color/holo_orange_light" />-->
+<!--    <TextView-->
+<!--        android:id="@+id/courseTextView3"-->
+<!--        android:layout_width="100dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_margin="10dp"-->
+<!--        android:background="@android:color/holo_orange_light" />-->
 </LinearLayout>

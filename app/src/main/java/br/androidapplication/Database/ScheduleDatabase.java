@@ -76,17 +76,17 @@ public abstract class ScheduleDatabase extends RoomDatabase {
                 mTermDao.insert(term);
 
                 //Course data
-                CourseEntity course = new CourseEntity(1, 2, "Math", "12/03/12", "11/04/12", "Completed", "Steven Jobs", "210-256-4578", "stevejobs@gmail.com", "dont look at my notes");
+                CourseEntity course = new CourseEntity(1, 2, "Math", "12/10/21", "12/11/21", "Completed", "Steven Jobs", "210-256-4578", "stevejobs@gmail.com", "dont look at my notes");
                 mCourseDao.insert(course);
-                course = new CourseEntity(2, 3, "English", "12/03/12", "11/04/12", "Completed", "Matthew Johnson", "210-256-4578", "matt@gmail.com", "my notes lalalala");
+                course = new CourseEntity(2, 3, "English", "12/10/21", "12/11/21", "Completed", "Matthew Johnson", "210-256-4578", "matt@gmail.com", "my notes lalalala");
                 mCourseDao.insert(course);
-                course = new CourseEntity(1, 3, "Test", "12/03/12", "11/04/12", "Completed", "Matthew Johnson", "210-256-4578", "matt@gmail.com", null);
+                course = new CourseEntity(1, 3, "Test", "12/10/21", "12/11/21", "Completed", "Matthew Johnson", "210-256-4578", "matt@gmail.com", null);
                 mCourseDao.insert(course);
 
                 //Assessment data
-                AssessmentEntity assessment = new AssessmentEntity(1, 3, "Performance", "MidTerm", "12/08/11", "12/09/12");
+                AssessmentEntity assessment = new AssessmentEntity(1, 3, "Performance", "MidTerm", "12/10/21", "12/11/21");
                 mAssessmentDao.insert(assessment);
-                assessment = new AssessmentEntity(2, 1, "Objective", "Final", "12/07/11", "12/04/11");
+                assessment = new AssessmentEntity(2, 1, "Objective", "Final", "12/10/21", "12/11/21");
                 mAssessmentDao.insert(assessment);
             });
         }

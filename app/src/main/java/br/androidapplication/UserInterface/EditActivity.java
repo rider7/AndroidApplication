@@ -133,24 +133,46 @@ public class EditActivity  extends AppCompatActivity {
             startActivity(shareIntent);
             return true;
         }
-        if (id == R.id.notifications) {
-                String dateFromScreen=editAssessmentEnd.getText().toString();
-                String myFormat = "MM/dd/yy";
-                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-                Date myDate = null;
-                try {
-                    myDate=sdf.parse(dateFromScreen);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                Long trigger = myDate.getTime();
+        if (id == R.id.start_notification) {
+            String assessmentTitle = editAssessmentTitle.getText().toString();
+            String dateFromScreen = editAssessmentStart.getText().toString();
+            String myFormat = "MM/dd/yy";
+            SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+            Date myDate = null;
+            try {
+                myDate = sdf.parse(dateFromScreen);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            Long trigger = myDate.getTime();
 
-                Intent intent=new Intent(EditActivity.this,MyReceiver.class);
-                intent.putExtra("key","End of Assessment!");
-                PendingIntent sender= PendingIntent.getBroadcast(EditActivity.this,++MainActivity.numAlert,intent,0);
-                AlarmManager alarmManager=(AlarmManager)getSystemService(Context.ALARM_SERVICE);
+            Intent intent = new Intent(EditActivity.this, MyReceiver.class);
+            intent.putExtra("key", "The following assessment starts today: " + assessmentTitle);
+            PendingIntent sender = PendingIntent.getBroadcast(EditActivity.this, ++MainActivity.numAlert, intent, 0);
+            AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+            //long date=1336226501635L;
+            alarmManager.set(AlarmManager.RTC_WAKEUP, trigger, sender);
+        }
+
+            if (id == R.id.end_notification) {
+                String assessmentTitle2=editAssessmentTitle.getText().toString();
+                String dateFromScreen2=editAssessmentEnd.getText().toString();
+            String myFormat2 = "MM/dd/yy";
+            SimpleDateFormat sdf2 = new SimpleDateFormat(myFormat2, Locale.US);
+            Date myDate2 = null;
+            try {
+                myDate2=sdf2.parse(dateFromScreen2);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            Long trigger2 = myDate2.getTime();
+
+                Intent intent2=new Intent(EditActivity.this,MyReceiver.class);
+                intent2.putExtra("key","The following assessment ends today: " + assessmentTitle2);
+                PendingIntent sender2= PendingIntent.getBroadcast(EditActivity.this,++MainActivity.numAlert,intent2,0);
+                AlarmManager alarmManager2=(AlarmManager)getSystemService(Context.ALARM_SERVICE);
                 //long date=1336226501635L;
-                alarmManager.set(AlarmManager.RTC_WAKEUP, trigger, sender);
+                alarmManager2.set(AlarmManager.RTC_WAKEUP, trigger2, sender2);
                 return true;
         }
         //noinspection SimplifiableIfStatement

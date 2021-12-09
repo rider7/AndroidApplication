@@ -182,34 +182,44 @@ import br.androidapplication.R;
                     Intent shareIntent = Intent.createChooser(sendIntent, null);
                     startActivity(shareIntent);
                     return true;
-                case R.id.notifications:
+                case R.id.start_notification:
                     String courseName=editCourseTitle.getText().toString();
                     String dateFromScreen=editCourseStart.getText().toString();
-                    //String dateFromScreen2=editCourseEnd.getText().toString();
                     String myFormat = "MM/dd/yy";
                     SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
                     Date myDate = null;
-                    //Date myDate2 = null;
                     try {
                         myDate=sdf.parse(dateFromScreen);
-                        //myDate2=sdf.parse(dateFromScreen2);
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
                     Long trigger = myDate.getTime();
-                    //Long trigger2 = myDate2.getTime();
+
 
                     Intent intent=new Intent(AssessmentActivity.this,MyReceiver.class);
-                    intent.putExtra("key","Check your start date for " + courseName );
+                    intent.putExtra("key","The following course is starting today:  " + courseName );
                     PendingIntent sender= PendingIntent.getBroadcast(AssessmentActivity.this,++MainActivity.numAlert,intent,0);
                     AlarmManager alarmManager=(AlarmManager)getSystemService(Context.ALARM_SERVICE);
                     alarmManager.set(AlarmManager.RTC_WAKEUP, trigger, sender);
 
-//                    Intent intent2=new Intent(AssessmentActivity.this,MyReceiver.class);
-//                    intent2.putExtra("key","Check your end date for " + courseName);
-//                    PendingIntent sender2= PendingIntent.getBroadcast(AssessmentActivity.this,++MainActivity.numAlert,intent,0);
-//                    AlarmManager alarmManager2=(AlarmManager)getSystemService(Context.ALARM_SERVICE);
-//                    alarmManager2.set(AlarmManager.RTC_WAKEUP, trigger2, sender2);
+                case R.id.end_notification:
+                    String courseName2=editCourseTitle.getText().toString();
+                    String dateFromScreen2=editCourseEnd.getText().toString();
+                    String myFormat2 = "MM/dd/yy";
+                    SimpleDateFormat sdf2 = new SimpleDateFormat(myFormat2, Locale.US);
+                    Date myDate2 = null;
+                    try {
+                        myDate2=sdf2.parse(dateFromScreen2);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    Long trigger2 = myDate2.getTime();
+
+                    Intent intent2=new Intent(AssessmentActivity.this,MyReceiver.class);
+                    intent2.putExtra("key","The following course is ending today:  " + courseName2);
+                    PendingIntent sender2= PendingIntent.getBroadcast(AssessmentActivity.this,++MainActivity.numAlert,intent2,0);
+                    AlarmManager alarmManager2=(AlarmManager)getSystemService(Context.ALARM_SERVICE);
+                    alarmManager2.set(AlarmManager.RTC_WAKEUP, trigger2, sender2);
                     return true;
             }
             return super.onOptionsItemSelected(item);
